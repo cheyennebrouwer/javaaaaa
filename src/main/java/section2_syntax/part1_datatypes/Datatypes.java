@@ -1,0 +1,149 @@
+package section2_syntax.part1_datatypes;
+
+/**
+ * Creation date: May 28, 2018
+ *
+ * @author Michiel Noback (&copy; 2018)
+ * @version 0.01
+ */
+public class Datatypes {
+    /*
+     * For the following couple of methods, simply return the name of the datatype that best supports
+     * the given usage.
+     * Choose from
+     *   - boolean
+     *   - char
+     *   - byte
+     *   - short
+     *   - int
+     *   - long
+     *   - double
+     *   - float
+     *   - String
+     *
+     * The first one has already been implemented as example.
+     */
+
+    String correctDataType0() {
+        //USAGE: the number of days within a year
+        return "short";
+    }
+
+    String correctDataType1() {
+        //USAGE: the age of the universe in whole years. Change the return value -null- to a correct value
+        //- the name of the data type that is correct here
+        return "long";
+    }
+
+    String correctDataType2() {
+        //USAGE: the turnover of ATP in a cell, in Molar per minute
+        return "float";
+    }
+
+    String correctDataType3() {
+        //USAGE: the molecular weight of a protein, in Daltons
+        return "float";
+    }
+
+    String correctDataType4() {
+        //USAGE: the alive/death status of a test animal
+        return "boolean";
+    }
+
+    String correctDataType5() {
+        //USAGE: the name of an app user
+        return "String";
+    }
+
+    String correctDataType6() {
+        //USAGE: encoding of human gender (Male, Female, Undefined)
+        return "char";
+    }
+
+    /* NEW SECTION OF ASSIGNMENTS */
+
+    /**
+     * The method below is supposed to calculate the G+C fraction of a DNA sequence.
+     * It should do so case insensitive - have a look at the methods in class `String`.
+     * Start by uncommenting the method body (select the block and press "Ctrl + /").
+     * Identify and solve the three problems and one error in this method.
+     * Only then the test with the same name will pass (in class DatatypesTest)
+     */
+    double determineGCfraction(String theDNA) {
+        int gcCount = 0;  // Initialize gcCount
+        theDNA = theDNA.toUpperCase();  // Make the string case insensitive
+        for (int i = 0; i < theDNA.length(); i++) {
+            char nucleotide = theDNA.charAt(i);
+            if (nucleotide == 'C' || nucleotide == 'G') {
+                gcCount++;
+            }
+        }
+        double fraction = (double) gcCount / theDNA.length();  // Cast to double for accurate division
+        return fraction;
+    }
+
+    /**
+     * The method below creates a string and calls another method -replaceWord()- to change it.
+     * Something goes wrong - it should return "where can I find the sodamachine in this building?"
+     *
+     * Can you fix it?
+     */
+    String modifyString() {
+        String input = "where can I find the coffeemachine in this building?";
+        input = replaceWord(input, "coffee", "soda");  // Assign the returned value to input
+        return input;
+    }
+
+    /**
+     * This method is linked to the method above as a single assignment.
+     */
+    String replaceWord(String input, String replace, String replaceWith) {
+        return input.replace(replace, replaceWith);
+    }
+
+    /**
+     * This method should return a String array of length 2 with the first and last element
+     * of the input array in it, converted to their String representations.
+     * For any Java object you can use object.toString() to get this string representation
+     */
+    String[] getFirstAndLastAsStringRepresentation(Object[] input) {
+        if (input == null || input.length == 0) {
+            return new String[]{"null", "null"};
+        }
+        String first = input[0].toString();
+        String last = input[input.length - 1].toString();
+        return new String[]{first, last};
+    }
+
+    /**
+     * This method should return a new int array where all integers from the input have been cubed (power of 3).
+     * For convenience, the skeleton of a for loop is already provided.
+     * @param input
+     * @return cubedInput
+     */
+    int[] cubeAll(int[] input) {
+        int arrayLength = input.length;  // Get the correct array length
+        int[] cubedInput = new int[arrayLength];  // Create a new array to store the cubed values
+        for (int i = 0; i < arrayLength; i++) {
+            cubedInput[i] = input[i] * input[i] * input[i];  // Cube each element
+        }
+        return cubedInput;
+    }
+
+    /**
+     * This method should return the cumulative product of all numbers in the input array.
+     * @param input the input number array
+     * @return the cumulative product
+     */
+    int cumulativeProduct(int[] input) {
+        if (input.length == 0) {
+            return 1;  // Return 1 for an empty array as multiplying by 1 does nothing
+        }
+        int product = 1;
+        for (int num : input) {
+            product *= num;
+        }
+        return product;
+    }
+
+}
